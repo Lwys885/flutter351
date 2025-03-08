@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter351/widgets/loginpage.dart';
+import 'package:flutter351/widgets/mainpage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +33,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LoginPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => LoginPage(),
+        'MainPage': (context) => MainPageWidget(),
+      },
     );
   }
 }

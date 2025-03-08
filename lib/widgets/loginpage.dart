@@ -20,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
             backgroundColor: Colors.green,
           ),
         );
+        Navigator.pushNamed(context, 'MainPage');
       } else {
         _errorMessage = 'Incorrect PIN. Please try again.';
       }
