@@ -20,28 +20,21 @@ class Dashboard extends StatelessWidget {
                 SizedBox(height: 8),
                 _buildProjectCard(Icons.lightbulb_outline, 'Street Lights', '24'),
                 SizedBox(height: 16),
+                _buildTrafficLightsCard(Icons.traffic, '3,200'),
+                SizedBox(height: 16),
                 Text(
                   'Power Consumption',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 8),
-                _buildPowerConsumptionCard(),
+                _buildPowerConsumptionCard(80),
                 SizedBox(height: 16),
                 Text(
                   'Brightness Level',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 8),
-                _buildBrightnessLevelCard('\$529,204'),
                 SizedBox(height: 16),
-                Text(
-                  'Traffic Lights',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 8),
-                _buildTrafficLightsCard(Icons.traffic, '3,200'),
-                SizedBox(height: 16),
-                _buildFooterWithChart('562k', '55%'),
+                _buildPowerConsumptionCard(55),
               ],
             ),
           ),
@@ -71,7 +64,7 @@ class Dashboard extends StatelessWidget {
     );
   }
 
-  Widget _buildPowerConsumptionCard() {
+  Widget _buildPowerConsumptionCard(num percentage) {
     return Card(
       elevation: 4,
       child: Padding(
@@ -79,25 +72,32 @@ class Dashboard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'You’re using 80% of available requests.',
-              style: TextStyle(fontSize: 18),
+            Center(
+              child: SizedBox(
+                width: 200,
+                height: 200,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    SizedBox(
+                      width: 150,
+                      height: 150,
+                      child: CircularProgressIndicator(
+                        value: percentage/100,
+                        backgroundColor: Colors.grey[300],
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                        strokeWidth: 20,
+                      ),
+                    ),
+                    Text(
+                      '${percentage}%',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            SizedBox(height: 8),
-            LinearProgressIndicator(
-              value: 0.8,
-              backgroundColor: Colors.grey[300],
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'You’ve almost reached your limit',
-              style: TextStyle(fontSize: 16, color: Colors.red),
-            ),
-            Text(
-              'Upgrade plan to make more network requests.',
-              style: TextStyle(fontSize: 16),
-            ),
+
           ],
         ),
       ),
