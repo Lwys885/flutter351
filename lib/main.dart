@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter351/widgets/dashboard.dart';
+import 'package:flutter351/widgets/livestatus.dart';
 import 'package:flutter351/widgets/loginpage.dart';
 import 'package:flutter351/widgets/mainpage.dart';
 
@@ -37,6 +39,9 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => LoginPage(),
         'MainPage': (context) => MainPageWidget(),
+        'Dashboard': (context) => Dashboard(),
+        'LiveStatus': (context) =>  LiveStatusScreen(),
+
       },
     );
   }
